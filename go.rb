@@ -1,18 +1,19 @@
 require 'rubygems'
 require './include/Message'
 require './include/Account'
-require './include/Router'
 require 'net/imap'
 require 'net/smtp'
 require 'mail'
 
+def main
+  account = Account.new
+  imap = account.connect
 
-account = Account.new
-
-imap = account.connect
-
-messages = account.fetch(imap)
-
-if messages.length > 0
-  Router.show(messages)
+  messages = account.fetch(imap)
+  if messages.length > 0
+    Message.show(messages)
+  end
 end
+
+main
+

@@ -3,7 +3,7 @@ class Account
   attr_accessor :mail, :password, :server, :port, :ssl, :smtp, :smtp_port, :domain
 
   def initialize(server = "imap.gmail.com", port = "993",
-                 mail = "mail@mail.com", password = "password",
+                 mail = "test@gmail.com", password = "password",
                  ssl = true, smtp = "smtp.gmail.com", smtp_port = 587, domain = "gmail.com")
     self.server = server
     self.port = port
@@ -22,6 +22,7 @@ class Account
   end
 
   def fetch(imap)
+    system("clear")
     emails = []
     imap.select("INBOX")
     unseen = imap.search(["UNSEEN"])
